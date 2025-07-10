@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Visitor" as visitor
+actor "Author (Registered Visitor)" as author
+
+rectangle "Blog Post System" {
+    usecase "Logout" as ucLogout
+
+    usecase "Create Post" as ucCreatePost
+    usecase "Edit Post" as ucEditPost
+    usecase "Delete Post" as ucDeletePost
+    usecase "Publish Post" as ucPublishPost
+    usecase "Unpublish Post" as ucUnpublishPost
+
+    usecase "Login" as ucLogin
+
+    usecase "Show All Posts" as ucShowAllPosts
+    usecase "Read Post" as ucReadPost
+    usecase "Search Post" as ucSearchPost
+    usecase "Register User" as ucRegister
+}
+
+' --- Relasi Aktor ---
+visitor --> ucRegister
+visitor --> ucLogin
+visitor --> ucShowAllPosts
+visitor --> ucReadPost
+visitor --> ucSearchPost
+
+ucLogin <-- author
+ucLogout <-- author
+ucCreatePost <-- author
+ucEditPost <-- author
+ucDeletePost <-- author
+ucPublishPost <-- author
+ucUnpublishPost <-- author
+ucShowAllPosts <-- author
+ucReadPost <-- author
+ucSearchPost <-- author
+@enduml
