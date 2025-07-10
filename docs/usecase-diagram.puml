@@ -1,4 +1,4 @@
-@startuml
+@startuml blogpost-System
 left to right direction
 skinparam packageStyle rectangle
 
@@ -22,7 +22,6 @@ rectangle "Blog Post System" {
     usecase "Register User" as ucRegister
 }
 
-' --- Relasi Aktor ---
 visitor --> ucRegister
 visitor --> ucLogin
 visitor --> ucShowAllPosts
