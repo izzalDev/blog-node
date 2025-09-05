@@ -1,4 +1,4 @@
-import { ValueError } from "../error/ValueError.ts";
+import { ValueError } from "@src/shared/errors/ValueError.ts";
 
 export class Username {
   constructor(private readonly value: string) {

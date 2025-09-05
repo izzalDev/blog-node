@@ -1,5 +1,5 @@
+import { ValueError } from "@src/shared/errors/ValueError.ts";
 import { compare, hash } from "bcrypt";
-import { ValueError } from "../error/ValueError.ts";
 
 export class Password {
   private static readonly SALT_ROUNDS = 10;

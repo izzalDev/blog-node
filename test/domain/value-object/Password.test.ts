@@ -1,5 +1,5 @@
-import { ValueError } from "@src/domain/error/ValueError.ts";
 import { Password } from "@src/domain/value-object/Password.ts";
+import { ValueError } from "@src/shared/errors/ValueError.ts";
 
 describe("Password", () => {
   describe("isValid", () => {

@@ -4,8 +4,8 @@ import { Username } from "@src/domain/value-object/Username.ts";
 import { Email } from "@src/domain/value-object/Email.ts";
 import { SignupUsecase } from "@src/application/usecases/SignupUsecase.ts";
 import { ValidationError } from "@src/shared/errors/ValidationError.ts";
-import { ValueError } from "@src/domain/error/ValueError.ts";
 import type { SignupDtos } from "@src/application/dtos/SignupDtos.ts";
+import { ValueError } from "@src/shared/errors/ValueError.ts";
 
 describe("SignupUsecase", () => {
   let mockUserRepository: jest.Mocked<UserRepository>;
