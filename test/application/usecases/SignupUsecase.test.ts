@@ -2,11 +2,10 @@ import type { UserRepository } from "@src/domain/repositories/UserRepositories.t
 import { User } from "@src/domain/entities/User.ts";
 import { Username } from "@src/domain/value-object/Username.ts";
 import { Email } from "@src/domain/value-object/Email.ts";
-import {
-  SignupUsecase,
-  ValidationError,
-  type SignupInput,
-} from "@src/application/usecases/SignupUsecase.ts";
+import { SignupUsecase } from "@src/application/usecases/SignupUsecase.ts";
+import { ValidationError } from "@src/shared/errors/ValidationError.ts";
+import { ValueError } from "@src/domain/error/ValueError.ts";
+import type { SignupDtos } from "@src/application/dtos/SignupDtos.ts";
 
 describe("SignupUsecase", () => {
   let mockUserRepository: jest.Mocked<UserRepository>;
@@ -21,7 +20,7 @@ describe("SignupUsecase", () => {
     usecase = new SignupUsecase(mockUserRepository);
   });
 
-  const validInput: SignupInput = {
+  const validInput: SignupDtos = {
     username: "valid_user",
     email: "valid@example.com",
     password: "Valid123!",
@@ -46,74 +45,38 @@ describe("SignupUsecase", () => {
 
   it("should throw ValidationError if username is invalid", async () => {
     const input = { ...validInput, username: "a" }; // invalid username
-
-    await expect(usecase.execute(input)).rejects.toThrow(ValidationError);
-    await expect(usecase.execute(input)).rejects.toMatchObject({
-      errors: {
-        username: expect.any(Array),
-      },
-    });
+    await expect(usecase.execute(input)).rejects.toThrow(ValueError);
   });
 
   it("should throw ValidationError if email is invalid", async () => {
     const input = { ...validInput, email: "invalid-email" };
-
-    await expect(usecase.execute(input)).rejects.toThrow(ValidationError);
-    await expect(usecase.execute(input)).rejects.toMatchObject({
-      errors: {
-        email: expect.any(Array),
-      },
-    });
+    await expect(usecase.execute(input)).rejects.toThrow(ValueError);
   });
 
   it("should throw ValidationError if password is invalid", async () => {
     const input = { ...validInput, password: "123" };
-
-    await expect(usecase.execute(input)).rejects.toThrow(ValidationError);
-    await expect(usecase.execute(input)).rejects.toMatchObject({
-      errors: {
-        password: expect.any(Array),
-      },
-    });
+    await expect(usecase.execute(input)).rejects.toThrow(ValueError);
   });
 
   it("should throw ValidationError if username already exists", async () => {
     mockUserRepository.findByUsername.mockResolvedValue({} as unknown as User);
     mockUserRepository.findByEmail.mockResolvedValue(null);
-
     await expect(usecase.execute(validInput)).rejects.toThrow(ValidationError);
     await expect(usecase.execute(validInput)).rejects.toMatchObject({
-      errors: {
-        username: expect.arrayContaining(["Username already exists."]),
-      },
+      errors: expect.arrayContaining([
+        { field: "username", message: "Username already exists." },
+      ]),
     });
   });
 
   it("should throw ValidationError if email already exists", async () => {
     mockUserRepository.findByUsername.mockResolvedValue(null);
     mockUserRepository.findByEmail.mockResolvedValue({} as unknown as User);
-
     await expect(usecase.execute(validInput)).rejects.toThrow(ValidationError);
     await expect(usecase.execute(validInput)).rejects.toMatchObject({
-      errors: {
-        email: expect.arrayContaining(["Email already exists."]),
-      },
-    });
-  });
-
-  it("should accumulate multiple errors", async () => {
-    mockUserRepository.findByUsername.mockResolvedValue({} as unknown as User);
-    mockUserRepository.findByEmail.mockResolvedValue({} as unknown as User);
-
-    const input = { username: "a", email: "bademail", password: "123" };
-
-    await expect(usecase.execute(input)).rejects.toThrow(ValidationError);
-    await expect(usecase.execute(input)).rejects.toMatchObject({
-      errors: {
-        username: expect.any(Array),
-        email: expect.any(Array),
-        password: expect.any(Array),
-      },
+      errors: expect.arrayContaining([
+        { field: "email", message: "Email already exists." },
+      ]),
     });
   });
 });
