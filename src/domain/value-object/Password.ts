@@ -1,4 +1,4 @@
-import { ValueError } from "@src/shared/errors/ValueError.ts";
+import { ValueError } from "@src/shared/errors/ValueError";
 import { compare, hash } from "bcrypt";
 
 export class Password {

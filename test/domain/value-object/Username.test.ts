@@ -1,5 +1,5 @@
-import { Username } from "@src/domain/value-object/Username.ts";
-import { ValueError } from "@src/shared/errors/ValueError.ts";
+import { Username } from "@src/domain/value-object/Username";
+import { ValueError } from "@src/shared/errors/ValueError";
 
 describe("Username", () => {
   test("should create Username instance with valid value", () => {

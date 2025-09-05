@@ -1,11 +1,11 @@
-import { User } from "@src/domain/entities/User.ts";
-import type { UserRepository } from "@src/domain/repositories/UserRepositories.ts";
-import { Username } from "@src/domain/value-object/Username.ts";
-import { Email } from "@src/domain/value-object/Email.ts";
-import { Password } from "@src/domain/value-object/Password.ts";
-import type { ValidationErrorItem } from "@src/shared/errors/ValidationErrorItem.ts";
-import { ValidationError } from "@src/shared/errors/ValidationError.ts";
-import type { SignupDtos as SignupDto } from "../dtos/SignupDtos.ts";
+import { User } from "@src/domain/entities/User";
+import type { UserRepository } from "@src/domain/repositories/UserRepositories";
+import { Username } from "@src/domain/value-object/Username";
+import { Email } from "@src/domain/value-object/Email";
+import { Password } from "@src/domain/value-object/Password";
+import type { ValidationErrorItem } from "@src/shared/errors/ValidationErrorItem";
+import { ValidationError } from "@src/shared/errors/ValidationError";
+import type { SignupDtos as SignupDto } from "../dtos/SignupDtos";
 
 export class SignupUsecase {
   constructor(private readonly userRepository: UserRepository) {}

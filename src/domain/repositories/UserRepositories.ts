@@ -1,6 +1,6 @@
-import type { User } from "../entities/User.ts";
-import type { Email } from "../value-object/Email.ts";
-import type { Username } from "../value-object/Username.ts";
+import type { User } from "../entities/User";
+import type { Email } from "../value-object/Email";
+import type { Username } from "../value-object/Username";
 
 export interface UserRepository {
   findByEmail(email: Email): Promise<User | null>;

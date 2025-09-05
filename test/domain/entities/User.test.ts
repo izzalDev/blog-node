@@ -1,7 +1,7 @@
-import { User } from "@src/domain/entities/User.ts";
-import { Email } from "@src/domain/value-object/Email.ts";
-import { Username } from "@src/domain/value-object/Username.ts";
-import { Password } from "@src/domain/value-object/Password.ts";
+import { User } from "@src/domain/entities/User";
+import { Email } from "@src/domain/value-object/Email";
+import { Username } from "@src/domain/value-object/Username";
+import { Password } from "@src/domain/value-object/Password";
 
 describe("User Entity", () => {
   const validEmail = new Email("test@example.com");

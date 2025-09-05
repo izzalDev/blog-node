@@ -1,5 +1,5 @@
-import { Email } from "@src/domain/value-object/Email.ts";
-import { ValueError } from "@src/shared/errors/ValueError.ts";
+import { Email } from "@src/domain/value-object/Email";
+import { ValueError } from "@src/shared/errors/ValueError";
 
 describe("Email", () => {
   it("should create Email instance with valid email", () => {

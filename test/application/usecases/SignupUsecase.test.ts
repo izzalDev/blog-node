@@ -1,11 +1,11 @@
-import type { UserRepository } from "@src/domain/repositories/UserRepositories.ts";
-import { User } from "@src/domain/entities/User.ts";
-import { Username } from "@src/domain/value-object/Username.ts";
-import { Email } from "@src/domain/value-object/Email.ts";
-import { SignupUsecase } from "@src/application/usecases/SignupUsecase.ts";
-import { ValidationError } from "@src/shared/errors/ValidationError.ts";
-import type { SignupDtos } from "@src/application/dtos/SignupDtos.ts";
-import { ValueError } from "@src/shared/errors/ValueError.ts";
+import type { UserRepository } from "@src/domain/repositories/UserRepositories";
+import { User } from "@src/domain/entities/User";
+import { Username } from "@src/domain/value-object/Username";
+import { Email } from "@src/domain/value-object/Email";
+import { SignupUsecase } from "@src/application/usecases/SignupUsecase";
+import { ValidationError } from "@src/shared/errors/ValidationError";
+import type { SignupDtos } from "@src/application/dtos/SignupDtos";
+import { ValueError } from "@src/shared/errors/ValueError";
 
 describe("SignupUsecase", () => {
   let mockUserRepository: jest.Mocked<UserRepository>;

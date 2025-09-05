@@ -1,6 +1,6 @@
-import { Email } from "../value-object/Email.ts";
-import { Password } from "../value-object/Password.ts";
-import { Username } from "../value-object/Username.ts";
+import { Email } from "../value-object/Email";
+import { Password } from "../value-object/Password";
+import { Username } from "../value-object/Username";
 
 export class User<T = any> {
   private constructor(
