@@ -11,7 +11,10 @@
     "target": "esnext",
     "types": ["jest", "node"],
 		"paths": {
-			"@src/*":["src/*"]
+			"@src/*":["src/*"],
+			"@usecases/*":["src/application/usecases/*"],
+			"@value-object/*":["src/domain/value-object/*"],
+			"@errors/*":["src/shared/errors/*"]
 		},
     // For nodejs:
     // "lib": ["esnext"],
